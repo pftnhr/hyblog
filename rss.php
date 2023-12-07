@@ -14,7 +14,7 @@ require_once('Parsedown.php');
 require_once('ParsedownExtra.php');
 
 $target_dir = dirname(__FILE__);
-$rss = $target_dir.'/hyblog.xml';
+$rss = $target_dir.'/feed.xml';
 
 if ( file_exists( $rss ) ) {
 	unlink( $rss );
@@ -122,7 +122,7 @@ fwrite($rssfile, '</channel>'.PHP_EOL);
 fwrite($rssfile, '</rss>'.PHP_EOL);
 fclose($rssfile);
 
-$feedurl = BASE_URL.'hyblog.xml';
+$feedurl = BASE_URL.'feed.xml';
 
 doPing($feedurl);
 

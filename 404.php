@@ -9,6 +9,10 @@ require_once('config.php');
 
 $target_dir = dirname(__FILE__).'/pages/';
 
+// Dynamisch den Titel aus dem Dateinamen ableiten
+$currentFileName = basename($_SERVER['SCRIPT_FILENAME'], '.php');
+$siteTitle = ucfirst($currentFileName);
+
 $pagenames = array();
 
 foreach(glob($target_dir.'*.md') as $i=>$file) {
@@ -24,18 +28,10 @@ foreach($pagenames as $pagename) {
 	}
 }
 ?>
-<!DOCTYPE html>
-<html lang="en-GB">
-<head>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>404</title>
-	<meta name="description" content="<?php echo DESCRIPTION; ?>">
-  	<link rel="icon" type="image/png" href="<?php echo AVATAR; ?>">
-  	<link rel="stylesheet" href="<?php echo BASE_URL; ?>style_min.css" type="text/css" media="all">
-    <link rel="home alternate" type="application/rss+xml" title="hyblog feed" href="<?php echo BASE_URL; ?>hyblog.xml">
-</head>
 
-<body>
+<?php include(TEMPL_DIR.'/header.php'); ?>
+
+<body class="<?php echo strtolower($currentFileName); ?>">
 	<div id="wrapper" style="width: 100vw; position: absolute; left: 0px;">
 	    <div id="page" class="hfeed h-feed site">
 	        <header id="masthead" class="site-header">
@@ -68,5 +64,5 @@ foreach($pagenames as $pagename) {
 <?php
 	$pageDesktop = "157";
 	$pageMobile = "207";
-	include('footer.php');
+	include(TEMPL_DIR.'/footer.php');
 ?>

@@ -19,6 +19,10 @@ $year = date('Y');
 $month = date('m');
 $target_dir = "uploads/" . $year . "/";
 
+// Dynamisch den Titel aus dem Dateinamen ableiten
+$currentFileName = basename($_SERVER['SCRIPT_FILENAME'], '.php');
+$siteTitle = ucfirst($currentFileName);
+
 if(!file_exists("uploads")) {
     mkdir("uploads");
 }
@@ -72,11 +76,9 @@ if(isset($_POST["submit"])) {
 
 ?>
 
-<html>
-<head>
-	<link defer rel="stylesheet" href="style_min.css" type="text/css" media="all">
-</head>
-<body>
+<?php include(TEMPL_DIR.'/header.php'); ?>
+
+<body class="<?php echo strtolower($currentFileName); ?>">
 
 <form action="" method="post" enctype="multipart/form-data" style="width: 100%; margin-top: 10px;" onsubmit="document.getElementById('upload').value='Uploading'; document.getElementById('upload').style.border='0px'; document.getElementById('upload').style.display='none'; document.getElementById('is_uploaded').style.display='none'; document.getElementById('is_uploaded').style.fontSize='12px'; document.getElementById('is_uploaded').style.paddingTop='7px'; document.getElementById('choose_button').innerText='Uploading...';">
 <form action="" method="post" enctype="multipart/form-data" style="width: 100%; margin-top: 10px;" onsubmit="document.getElementById('upload').value='Uploading';">

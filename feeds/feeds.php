@@ -7,21 +7,15 @@ define('APP_RAN', '');
 
 require_once('../config.php');
 
+// Dynamisch den Titel aus dem Dateinamen ableiten
+$currentFileName = basename($_SERVER['SCRIPT_FILENAME'], '.php');
+$siteTitle = ucfirst($currentFileName);
+
 ?>
 
-<!DOCTYPE html>
-<html lang="en-GB">
-<head>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title><?php echo NAME; ?> - feeds</title>
-	<meta name="description" content="<?php echo DESCRIPTION; ?>">
-    <link rel="icon" type="image/png" href="<?php echo AVATAR; ?>">
-	<link defer rel="stylesheet" href="../style_min.css" type="text/css" media="all">
-    <link rel="me" href="mailto:<?php echo MAILTO; ?>" />
-	<link rel="me" href="https://micro.blog/colinwalker" />
-</head>
+<?php include(TEMPL_DIR.'/header.php'); ?>
 
-<body>
+<body class="<?php echo strtolower($currentFileName); ?>">
     <div id="page" class="hfeed h-feed site">
         <header id="masthead" class="site-header">
             <div class="site-branding">
@@ -39,7 +33,7 @@ require_once('../config.php');
 					<div class="entry-content e-content pre-line">
 					    <strong>Want to keep up with what’s going on?</strong>
                         
-                        Subscribe to the <a href="<?php echo BASE_URL; ?>hyblog.xml">posts</a> RSS Feed.
+                        Subscribe to the <a href="<?php echo BASE_URL; ?>feed.xml">posts</a> RSS Feed.
                         
 <?php
 
@@ -60,5 +54,5 @@ require_once('../config.php');
 <?php
     $pageDesktop = "157";
     $pageMobile = "227";
-    include('../footer.php');
+    include(TEMPL_DIR.'/footer.php');
 ?>

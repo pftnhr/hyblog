@@ -86,7 +86,7 @@ A UI for creating custom pages in located in /admin - see the changelog for deta
 
 **RSS Feeds**
 
-When posts are added or updated the RSS feed is rebuilt automatically and saved as hyblog.xml in your path root. There is an option in 'Admin' to use the daily feed digest. When this is set you 'yes' the link for daily.xml is included on the /feeds page. You will need to create cron job or equivalent to run dailyfeed.php each night (just after midnight is best) to rebuild the daily feed. If you don't want to use the daily digest just leave the option as 'no' in Admin.
+When posts are added or updated the RSS feed is rebuilt automatically and saved as feed.xml in your path root. There is an option in 'Admin' to use the daily feed digest. When this is set you 'yes' the link for daily.xml is included on the /feeds page. You will need to create cron job or equivalent to run dailyfeed.php each night (just after midnight is best) to rebuild the daily feed. If you don't want to use the daily digest just leave the option as 'no' in Admin.
 
 Oh, the RSS feeds support rssCloud using Andy Sylvester's server at rpc.rsscloud.io.
 

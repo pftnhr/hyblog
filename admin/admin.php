@@ -10,6 +10,10 @@ define('APP_RAN', '');
 
 $uname = $hash = $sitename = $subtitle = $description = $url = $mailto = $avatar = $nowns = '';
 
+// Dynamisch den Titel aus dem Dateinamen ableiten
+$currentFileName = basename($_SERVER['SCRIPT_FILENAME'], '.php');
+$siteTitle = ucfirst($currentFileName);
+
 // Include config file
 clearstatcache();
 require('../config.php');
@@ -144,6 +148,9 @@ function changeConfig($rebuild = null) {
 	fwrite($createfile,'define("AVATAR", "' . $avatar . '");'.PHP_EOL);
 	fwrite($createfile,'define("DAILYFEED", "' . $dailyfeed . '");'.PHP_EOL);
 	fwrite($createfile,'define("NOWNS", "' . $nowns . '");'.PHP_EOL);
+	fwrite($createfile,'define("BASE_DIR", "' . BASE_DIR . '");'.PHP_EOL);
+	fwrite($createfile,'define("TEMPL_DIR", "' . BASE_DIR . '/includes/layout");'.PHP_EOL);
+	fwrite($createfile,'define("TEMPL_URL", "' . $url . 'includes/layout");'.PHP_EOL);
 		
 	fwrite($createfile,'?>');	
 	fclose($createfile);	
@@ -158,27 +165,9 @@ function changeConfig($rebuild = null) {
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="UTF-8">
-    <title>Admin</title>
-    <link rel="stylesheet" href="../style_min.css">
-    
-    <script>
-		function togglePass() {
-		    var pass = document.getElementById("password");
-		    if (pass.type === "password") {
-		        pass.type = "text";
-		    } else {
-		        pass.type = "password";
-		    }
-	  	}
-  	</script>
+<?php include(TEMPL_DIR.'/header.php'); ?>
 
-</head>
-<body class="login">
+<body class="<?php echo strtolower($currentFileName); ?>">
 
 	<header id="masthead" class="site-header">
 	    <div class="site-branding">

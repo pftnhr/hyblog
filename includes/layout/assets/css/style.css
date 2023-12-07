@@ -239,7 +239,8 @@ img + p, picture + p {
 
 /* Login page */
 
-body.login {
+body.login,
+body.admin {
 	background-color: var(--grey-f);
 }
 

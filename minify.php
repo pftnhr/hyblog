@@ -1,8 +1,9 @@
 <?php
 
-$root = dirname(__FILE__);
-$css = $root . '/style.css';
-$min = $root . '/style_min.css';
+require_once('config.php');
+
+$css = TEMPL_URL . '/assets/css/style.css';
+$min = TEMPL_URL . '/assets/css/style_min.css';
 
 if ( file_exists( $min ) ) {
 	unlink( $min );

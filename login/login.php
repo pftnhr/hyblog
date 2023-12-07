@@ -11,6 +11,10 @@ require_once('../config.php');
 $target_dir = dirname(__DIR__);
 $file = $target_dir . '/session.php';
 
+// Dynamisch den Titel aus dem Dateinamen ableiten
+$currentFileName = basename($_SERVER['SCRIPT_FILENAME'], '.php');
+$siteTitle = ucfirst($currentFileName);
+
 if ( file_exists( $file ) ) {
 	$auth = file_get_contents($file);
 }
@@ -52,18 +56,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="UTF-8">
-    <title>Login</title>
-	<link rel="stylesheet" href="../style_min.css" type="text/css" media="all">
-    <style type="text/css">
-        .wrapper{ width: 350px; padding: 20px; }
-    </style>
-</head>
-<body class="login">
+<?php include(TEMPL_DIR.'/header.php'); ?>
+
+<body class="<?php echo strtolower($currentFileName); ?>">
         <?php
             if (isset($password_err)) {
                 echo '<div class="wrapper" style="position: relative; top: 150px; text-align: center; color: #222;">' . $password_err . '</div>';

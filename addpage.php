@@ -10,6 +10,10 @@ require_once('config.php');
 $root = dirname(__FILE__);
 $auth = file_get_contents($root . '/session.php');
 
+// Dynamisch den Titel aus dem Dateinamen ableiten
+$currentFileName = basename($_SERVER['SCRIPT_FILENAME'], '.php');
+$siteTitle = ucfirst($currentFileName);
+
 if (!isset($_SESSION['hauth']) || $_SESSION['hauth'] != $auth) {
   header("location: " . BASE_URL );
   exit;
@@ -45,16 +49,10 @@ if (isset($_POST['addpage']) && $_POST['addpage'] == 'add') {
 }
 
 ?>
-<!DOCTYPE html>
-<html lang="en-GB">
-<head>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Add page</title>
-	<meta name="description" content="<?php echo DESCRIPTION; ?>">
-  	<link rel="icon" type="image/png" href="<?php echo AVATAR; ?>">
-  	<link rel="stylesheet" href="<?php echo BASE_URL; ?>style_min.css" type="text/css" media="all">
-</head>
-<body>
+
+<?php include(TEMPL_DIR.'/header.php'); ?>
+
+<body class="<?php echo strtolower($currentFileName); ?>">
 	<div id="wrapper" style="width: 100vw; position: absolute; left: 0px;">
 	    <div id="page" class="hfeed h-feed site">
 	        <header id="masthead" class="site-header">
@@ -82,5 +80,5 @@ if (isset($_POST['addpage']) && $_POST['addpage'] == 'add') {
 <?php
 	$pageDesktop = "157";
 	$pageMobile = "207";
-	include('footer.php');
+	include(TEMPL_DIR.'/footer.php');
 ?>

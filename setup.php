@@ -7,6 +7,10 @@
 $root = dirname(__FILE__);
 $file = $root . '/config.php';
 
+// Dynamisch den Titel aus dem Dateinamen ableiten
+$currentFileName = basename($_SERVER['SCRIPT_FILENAME'], '.php');
+$siteTitle = ucfirst($currentFileName);
+
 if ( file_exists( $file ) ) {
 		exit('You are already configured.');
 }
@@ -23,6 +27,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 	
 	$uname = password_hash($login, PASSWORD_DEFAULT);
 	$passhash = password_hash($password, PASSWORD_DEFAULT);
+	
 	if (substr($url,-1) != '/') {
 		$url.='/';	
 	}
@@ -48,6 +53,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 	fwrite($createfile,'define("DAILYFEED", "no");'.PHP_EOL);
 	fwrite($createfile,'define("NOWNS", "");'.PHP_EOL);
 	fwrite($createfile,'define("DATEFORMAT", "' . $format . '");'.PHP_EOL);
+	fwrite($createfile,'define("BASE_DIR", "' . dirname(__FILE__) . '");'.PHP_EOL);
+	fwrite($createfile,'define("TEMPL_DIR", "' . dirname(__FILE__) . '/includes/layout");'.PHP_EOL);
+	fwrite($createfile,'define("TEMPL_URL", "' . $url . 'includes/layout");'.PHP_EOL);
 		
 	fwrite($createfile,'?>');	
 	fclose($createfile);
@@ -72,18 +80,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="UTF-8">
-    <title>Setup</title>
-    <link rel="stylesheet" href="style_min.css">
-    <style type="text/css">
-        .wrapper{ width: 450px; }
-    </style>
-</head>
-<body>
+<?php include(TEMPL_DIR.'/header.php'); ?>
+
+<body class="<?php echo strtolower($currentFileName); ?>">
     <div class="wrapper">
 	    <h2 class="titleSpan">Setup</h2>
 	    <form id="setup_form" method="post">

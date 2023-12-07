@@ -5,6 +5,8 @@ session_start();
 
 define('APP_RAN', '');
 
+$currentFileName = basename($_SERVER['SCRIPT_FILENAME'], '.php');
+
 require_once('config.php');
 require_once('Parsedown.php');
 require_once('ParsedownExtra.php');
@@ -13,7 +15,7 @@ $target_dir = dirname(__FILE__);
 $auth = file_get_contents($target_dir . '/session.php');
 
 $page = $_GET['p'];
-$title = str_replace('_', ' ', ucfirst($page));
+$siteTitle = str_replace('_', ' ', ucfirst($page));
 $match = false;
 
 foreach(glob($target_dir.'/pages/*.md') as $file) {
@@ -34,28 +36,16 @@ $path = pathinfo($fullUrl, PATHINFO_DIRNAME);
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en-GB">
-<head>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title><?php echo $title; ?></title>
-	<meta name="description" content="<?php echo DESCRIPTION; ?>">
-  	<link rel="icon" type="image/png" href="<?php echo AVATAR; ?>">
-  	<link rel="stylesheet" href="style_min.css" type="text/css" media="all">
-    <link rel="home alternate" type="application/rss+xml" title="hyblog feed" href="<?php echo BASE_URL; ?>hyblog.xml">
-    <script>
-    	history.replaceState(null, '<?php echo $title; ?>', '<?php echo $path.'/'.$page; ?>');
-    </script>
-</head>
+<?php include(TEMPL_DIR.'/header.php'); ?>
 
-<body>
+<body class="<?php echo strtolower($currentFileName).' '.strtolower($siteTitle); ?>">
 	<div id="wrapper" style="width: 100vw; position: absolute; left: 0px;">
 	    <div id="page" class="hfeed h-feed site">
 	        <header id="masthead" class="site-header">
 	            <div class="site-branding">
 	                <h1 class="site-title">
 	                    <a href="<?php echo BASE_URL; ?>" rel="home">
-	                        <span class="p-name"><?php echo $title; ?></span>
+	                        <span class="p-name"><?php echo $siteTitle; ?></span>
 	                    </a>
 	                </h1>
 	            </div>
@@ -82,10 +72,8 @@ $path = pathinfo($fullUrl, PATHINFO_DIRNAME);
 					</article>
 				</main>
 			</div>
-			
-			<script src="../htmx.min.js"></script>
 <?php
 	$pageDesktop = "157";
-	$pageMobile = "207";
-	include('footer.php');
+	$pageMobile = "207";	
+	include(TEMPL_DIR.'/footer.php');
 ?>

@@ -1,10 +1,7 @@
-<?php if(!defined('APP_RAN')){ die(); } 
-
+<?php
+if(!defined('APP_RAN')){ die(); } 
 require_once('config.php');
-
-$target_dir = dirname(__FILE__);
-$auth = file_get_contents($target_dir . '/session.php');
-
+$auth = file_get_contents(BASE_DIR . '/session.php');
 ?>
 
 <input type="checkbox" style="display: none;" id="menu_tray_checkbox"/>
@@ -22,7 +19,7 @@ $auth = file_get_contents($target_dir . '/session.php');
   <nav>
 	<a href="<?php echo BASE_URL; ?>" style="font-size: 1.2em;">Home</a><br/><br/>
 <?php
-$pages = $target_dir.'/pages/';
+$pages = BASE_DIR.'/pages/';
 
 foreach(glob($pages.'*.md') as $i=>$file) {
 	$pagename = pathinfo($file, PATHINFO_FILENAME);

@@ -15,6 +15,8 @@ require_once('ParsedownExtra.php');
 
 $target_dir = dirname(__FILE__);
 
+$currentFileName = basename($_SERVER['SCRIPT_FILENAME'], '.php');
+
 $auth = file_get_contents($target_dir . '/session.php');
 
 $today = date('Y-m-d');
@@ -22,6 +24,8 @@ $date = isset($_GET['date']) ? $_GET['date'] : date('Y-m-d');
 $year = date('Y', strtotime($date));
 $month = date('m', strtotime($date));
 $day = date('d', strtotime($date));
+
+$siteTitle = $date;
 
 if (!file_exists($target_dir.'/posts/'.$year.'/'.$month.'/'.$date.'.md') && (!isset($_SESSION['hauth']) || $_SESSION['hauth'] != $auth)) {
 $files = glob($target_dir.'/posts/*/*/*.md');
@@ -58,38 +62,9 @@ $files = glob($target_dir.'/posts/*/*/*.md');
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en-GB">
-<head>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title><?php echo NAME.' - '.$date; ?></title>
-	<meta name="description" content="<?php echo DESCRIPTION; ?>">
-  	<link rel="icon" type="image/png" href="<?php echo AVATAR; ?>">
-	<link rel="stylesheet" href="<?php echo BASE_URL; ?>bigfoot/bigfoot-bottom.css" type="text/css" media="all">
-	<link rel="stylesheet" href="style_min.css" type="text/css" media="all">
-    	<link rel="home alternate" type="application/rss+xml" title="<?php echo NAME; ?> feed" href="<?php echo BASE_URL; ?>hyblog.xml">
-    	<link rel="canonical" href="<?php echo BASE_URL; ?>">
-    	<link rel="me" href="mailto:<?php echo MAILTO; ?>">
-	<style>
-		.replies {
-			height: auto;	
-		}
-		
-		@media screen and (min-width: 768px) {
-		    .nav-next a {
-		        padding-right: 25px;
-		    }
-		    .nav-previous a {
-		        padding-left: 25px;
-		    }
-		}
-	</style>
-	
-	<script src="script.js"></script>
-	
-</head>
+<?php include(TEMPL_DIR.'/header.php'); ?>
 
-<body>
+<body class="<?php echo strtolower($currentFileName).' '.strtolower($siteTitle); ?>">
 	<div id="wrapper" style="width: 100vw; position: absolute; left: 0px;">
 	    <div id="page" class="hfeed h-feed site">
 	        <header id="masthead" class="site-header">
@@ -316,9 +291,7 @@ if (isset($posts)) {
 ?>
 			</div>
 		</div>
-
-	<script src="htmx.min.js"></script>
-	<script src="jquery.slim.min.js"></script>
+		
 	<script src="bigfoot/bigfoot.min.js"></script>
 	<script>
 	    var bigfoot = $.bigfoot( {
@@ -331,5 +304,5 @@ if (isset($posts)) {
 <?php
 	$pageDesktop = "157";
 	$pageMobile = "207";
-	include('footer.php');
+	include(TEMPL_DIR.'/footer.php');
 ?>

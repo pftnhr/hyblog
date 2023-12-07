@@ -98,10 +98,10 @@ if (file_exists($target_dir.'/posts/'.$year.'/'.$month.'/'.$date.'.md')) {
 ?>
 	<a id="toggle" tabindex="1" class="toggle" onclick="toggleForm()" accesskey="e"><picture>
         <source srcset="../images/add_dark.png" media="(prefers-color-scheme: dark)">
-        <img src="../images/add_light.png" />
+        <img src="<?php echo BASE_URL; ?>images/add_light.png" />
         </picture>
     </a>
-    <a id="cancel" class="cancel" onclick="toggleForm()" accesskey="e"><img  loading="lazy" alt="cancel" src="../images/cancel.png" />
+    <a id="cancel" class="cancel" onclick="toggleForm()" accesskey="e"><img loading="lazy" alt="cancel" src="<?php echo BASE_URL; ?>images/cancel.png" />
     </a>
     
     <div id="editdiv" style="height: 0px; overflow: hidden;">
@@ -169,7 +169,7 @@ if (isset($posts)) {
 				$has='';
 			}
 			
-			echo '<a id="toggleComments'.$p.'" onclick="toggleComments('.$p.')" class="toggleComments"><picture class="commenticonpicture"><source srcset="/images/'.$has.'commentdark.png" media="(prefers-color-scheme: dark)"><img class="commenticon" src="/images/'.$has.'comment.png"></picture></a>';
+			echo '<a id="toggleComments'.$p.'" onclick="toggleComments('.$p.')" class="toggleComments"><picture class="commenticonpicture"><source srcset="' . BASE_URL . 'images/'.$has.'commentdark.png" media="(prefers-color-scheme: dark)"><img class="commenticon" src="' . BASE_URL . 'images/'.$has.'comment.png"></picture></a>';
 			echo '<a style="text-decoration: none;" href="#p' . $p . '" onclick="toggleComments('.$p.')">';
 			
 			if (isset($post_title)) {
@@ -196,7 +196,7 @@ if (isset($posts)) {
 					}
 					if (isset($_SESSION['hauth']) && $_SESSION['hauth'] == $auth) {
 					
-					echo '<img hx-target="#replies'.$p.'" hx-get="delcomment.php?c='.$i.'&date='.$date.'&p='.$p.'" hx-confirm="Are you sure?" title="Delete comment" src="../images/red-cross.png" style="width: 16px; float: right; cursor: pointer;">';
+					echo '<img hx-target="#replies'.$p.'" hx-get="delcomment.php?c='.$i.'&date='.$date.'&p='.$p.'" hx-confirm="Are you sure?" title="Delete comment" src="' . BASE_URL . 'images/red-cross.png" style="width: 16px; float: right; cursor: pointer;">';
 					
 					}
 					$Parsedown = new Parsedown();

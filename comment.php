@@ -59,4 +59,4 @@ echo '<input style="float: right; margin-right: 15px;" type="submit" value="comm
 echo '</form>';
 ?>
 
-<a id="toggleComments<?php echo $post; ?>" hx-swap-oob="true" onclick="toggleComments<?php echo $post; ?>" class="toggleComments"><picture class="commenticonpicture"><source srcset="/images/hascommentdark.png" media="(prefers-color-scheme: dark)"><img class="commenticon" src="/images/hascomment.png"></picture></a>
+<a id="toggleComments<?php echo $post; ?>" hx-swap-oob="true" onclick="toggleComments<?php echo $post; ?>" class="toggleComments"><picture class="commenticonpicture"><source srcset="<?php echo BASE_URL; ?>images/hascommentdark.png" media="(prefers-color-scheme: dark)"><img class="commenticon" src="<?php echo BASE_URL; ?>images/hascomment.png"></picture></a>

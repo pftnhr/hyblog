@@ -14,7 +14,7 @@ require_once('Parsedown.php');
 require_once('ParsedownExtra.php');
 
 $target_dir = dirname(__FILE__);
-$rss = $target_dir.'/feed.xml';
+$rss = BASE_DIR.'/feed.xml';
 
 if ( file_exists( $rss ) ) {
 	unlink( $rss );
@@ -34,7 +34,7 @@ fwrite($rssfile, '<lastBuildDate>' . gmdate('D, d M Y H:i:s') . ' GMT</lastBuild
 fwrite($rssfile, '<cloud domain="rpc.rsscloud.io" port="5337" path="/pleaseNotify" registerProcedure="" protocol="http-post"/>'.PHP_EOL);
 fwrite($rssfile, '<generator>hyblog</generator>'.PHP_EOL);
 fwrite($rssfile, '<source:account service="hyblog">'.NAME.'</source:account>'.PHP_EOL);
-fwrite($rssfile, '<language>en-GB</language>'.PHP_EOL);
+fwrite($rssfile, '<language>en</language>'.PHP_EOL);
 
 if (NOWNS != '') {
 	$nownsname = NOWNS;
@@ -68,7 +68,7 @@ $count = 0;
 foreach($filedates as $file) {
 	$year = date('Y', strtotime($file));
 	$month = date('m', strtotime($file));
-	$posts = file_get_contents($target_dir.'/posts/'.$year.'/'.$month.'/'.$file.'.md');
+	$posts = file_get_contents(BASE_DIR.'/posts/'.$year.'/'.$month.'/'.$file.'.md');
 	
 	$explode = array_filter(explode('@@', $posts),'strlen');
     $explode = array_reverse($explode);

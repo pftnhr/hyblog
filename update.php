@@ -50,6 +50,6 @@ if (isset($_POST['content']) && $_POST['content'] != '') {
 	<iframe id="upload_frame" scrolling="no" loading="lazy" src="uploader.php" style="display: inline;"></iframe>
 	<form name="form" method="post" action="update.php?date=<?php echo $_GET['date']; ?>">
 		<textarea rows="10" id="content" name="content" class="text"><?php echo $posts; ?></textarea>
-		<a href="hyblog.php?date=<?php echo $_GET['date']; ?>"><img  loading="lazy" style="width: 20px; float: left; position: relative; top: -1px; cursor: pointer;" alt="cancel" src="../images/cancel.png" /></a>
+		<a href="hyblog.php?date=<?php echo $_GET['date']; ?>"><img loading="lazy" style="width: 20px; float: left; position: relative; top: -1px; cursor: pointer;" alt="cancel" src="<?php echo BASE_URL; ?>images/cancel.png" /></a>
 		<input type="submit" style ="float: right;" value="update" />
 	</form>

@@ -13,11 +13,9 @@ require_once('content_filters.php');
 require_once('Parsedown.php');
 require_once('ParsedownExtra.php');
 
-$target_dir = dirname(__FILE__);
-
 $currentFileName = basename($_SERVER['SCRIPT_FILENAME'], '.php');
 
-$auth = file_get_contents($target_dir . '/session.php');
+$auth = file_get_contents(BASE_DIR . '/session.php');
 
 $today = date('Y-m-d');
 $date = isset($_GET['date']) ? $_GET['date'] : date('Y-m-d');
@@ -27,8 +25,7 @@ $day = date('d', strtotime($date));
 
 $siteTitle = $date;
 
-if (!file_exists($target_dir.'/posts/'.$year.'/'.$month.'/'.$date.'.md') && (!isset($_SESSION['hauth']) || $_SESSION['hauth'] != $auth)) {
-$files = glob($target_dir.'/posts/*/*/*.md');
+if (!file_exists(BASE_DIR.'/posts/'.$year.'/'.$month.'/'.$date.'.md') && (!isset($_SESSION['hauth']) || $_SESSION['hauth'] != $auth)) {
 	foreach($files as $postfile) {
 		$parts = explode('/', $postfile);
 		$index = count($parts) - 1;
@@ -80,24 +77,27 @@ $files = glob($target_dir.'/posts/*/*/*.md');
 	        <div id="primary" class="content-area">
 				<main id="main" class="site-main today-container">
 
-					<h2><span class="dateSpan">
-					<?php echo ($today == $date) ? 'Today' : date(DATEFORMAT, strtotime($date)); ?>
-					</span></h2>
-<?php					
+					<h2>
+						<span class="dateSpan">
+							<?php echo ($today == $date) ? 'Today' : date('d/m/Y', strtotime($date)); ?>
+						</span>
+					</h2>
 
-if (isset($_SESSION['hauth']) && $_SESSION['hauth'] == $auth) {
-	echo '<div id="postwrapper" hx-target="this" hx-post="update.php?date='.$date.'" hx-trigger="dblclick">';
-} else {
-	echo '<div id="postwrapper">';
-}
-
-if (file_exists($target_dir.'/posts/'.$year.'/'.$month.'/'.$date.'.md')) {		
-	$posts = file_get_contents($target_dir.'/posts/'.$year.'/'.$month.'/'.$date.'.md');
+<?php
+	if (isset($_SESSION['hauth']) && $_SESSION['hauth'] == $auth) {
+		echo '<div id="postwrapper" hx-target="this" hx-post="update.php?date='.$date.'" hx-trigger="dblclick">';
+	} else {
+		echo '<div id="postwrapper">';
+	}
 	
+	if (file_exists(BASE_DIR.'/posts/'.$year.'/'.$month.'/'.$date.'.md')) {		
+		$posts = file_get_contents(BASE_DIR.'/posts/'.$year.'/'.$month.'/'.$date.'.md');
+		
 	if (!empty($posts) && isset($_SESSION['hauth']) && $_SESSION['hauth'] == $auth) {
 ?>
+
 	<a id="toggle" tabindex="1" class="toggle" onclick="toggleForm()" accesskey="e"><picture>
-        <source srcset="../images/add_dark.png" media="(prefers-color-scheme: dark)">
+        <source srcset="?php echo BASE_URL; ?>images/add_dark.png" media="(prefers-color-scheme: dark)">
         <img src="<?php echo BASE_URL; ?>images/add_light.png" />
         </picture>
     </a>
@@ -158,7 +158,7 @@ if (isset($posts)) {
 			echo '<article id="p' . $p . '" class="h-entry hentry">' . PHP_EOL;
 			echo '<div class="section">';
 			
-			if ( file_exists( $target_dir.'/posts/'.$year.'/'.$month.'/comments'.$p.'-'.$date.'.md' ) ) {	$comments = file_get_contents($target_dir.'/posts/'.$year.'/'.$month.'/comments'.$p.'-'.$date.'.md');
+			if ( file_exists( BASE_DIR.'/posts/'.$year.'/'.$month.'/comments'.$p.'-'.$date.'.md' ) ) {	$comments = file_get_contents(BASE_DIR.'/posts/'.$year.'/'.$month.'/comments'.$p.'-'.$date.'.md');
 				$explode = preg_split('/@@/', $comments, -1, PREG_SPLIT_NO_EMPTY);
 				if (count($explode) > 0) {
 					$has ='has'; 
@@ -184,8 +184,8 @@ if (isset($posts)) {
 			echo '<h3>Comments</h3>';
 			echo '<div id="comment'.$p.'">';
 			
-			if ( file_exists( $target_dir.'/posts/'.$year.'/'.$month.'/comments'.$p.'-'.$date.'.md' ) ) {				
-				$comments = file_get_contents($target_dir.'/posts/'.$year.'/'.$month.'/comments'.$p.'-'.$date.'.md');
+			if ( file_exists( BASE_DIR.'/posts/'.$year.'/'.$month.'/comments'.$p.'-'.$date.'.md' ) ) {				
+				$comments = file_get_contents(BASE_DIR.'/posts/'.$year.'/'.$month.'/comments'.$p.'-'.$date.'.md');
 				$explode = preg_split('/@@/', $comments, -1, PREG_SPLIT_NO_EMPTY);
 				foreach ($explode as $i=>$comment) {
 					$parts = explode('<@>',$comment);
@@ -234,7 +234,7 @@ if (isset($posts)) {
 				$next_check = date('Y-m-d', strtotime($date .' +1 day'));
 				$match = false;
 
-				foreach (glob($target_dir . '/posts/*/*/*.md') as $file) {
+				foreach (glob(BASE_DIR . '/posts/*/*/*.md') as $file) {
 					$parts = explode('/', $file);
 					$index = count($parts) - 1;
 					$filename = $parts[$index];
@@ -293,6 +293,7 @@ if (isset($posts)) {
 		</div>
 		
 	<script src="bigfoot/bigfoot.min.js"></script>
+	
 	<script>
 	    var bigfoot = $.bigfoot( {
 	        positionContent: true,

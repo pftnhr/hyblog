@@ -7,13 +7,11 @@ define('APP_RAN', '');
 
 require_once('config.php');
 
-$home_dir = dirname(__FILE__);
-$auth = file_get_contents($home_dir . '/session.php');
+$auth = file_get_contents(BASE_DIR . '/session.php');
 
 if (!isset($_SESSION['hauth']) || !$_SESSION['hauth'] == $auth) {
 	die("Private!");
 }
-
 
 $year = date('Y');
 $month = date('m');

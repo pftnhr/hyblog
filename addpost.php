@@ -7,8 +7,8 @@ define('APP_RAN', '');
 
 require_once('config.php');
 
-$target_dir = dirname(__FILE__);
-$auth = file_get_contents($target_dir . '/session.php');
+$auth = file_get_contents(BASE_DIR . '/session.php');
+
 $date = date('Y-m-d');
 $year = date('Y', strtotime($date));
 $month = date('m', strtotime($date));
@@ -21,7 +21,7 @@ if (isset($_POST['content']) && isset($_POST['content']) != '') {
 		$newcontent .= "\r\n\r\n!! ".date('H:i:s');
 	}
 	
-	$file = $target_dir.'/posts/'.$year.'/'.$month.'/'.$date.'.md';
+	$file = BASE_DIR.'/posts/'.$year.'/'.$month.'/'.$date.'.md';
 	
 	file_put_contents($file, $newcontent, FILE_APPEND);
 	

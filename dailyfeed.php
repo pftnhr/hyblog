@@ -10,8 +10,7 @@ require_once('ping.php');
 require_once('Parsedown.php');
 require_once('ParsedownExtra.php');
 
-$target_dir = dirname(__FILE__);
-$rss = $target_dir.'/daily.xml';
+$rss = BASE_DIR.'/daily.xml';
 
 if ( file_exists( $rss ) ) {
 	unlink( $rss );
@@ -31,10 +30,13 @@ fwrite($rssfile, '<cloud domain="rpc.rsscloud.io" port="5337" path="/pleaseNotif
 fwrite($rssfile, '<generator>hyblog</generator>'.PHP_EOL);
 fwrite($rssfile, '<language>en-GB</language>'.PHP_EOL);
 
-$postfiles = glob($target_dir.'/*/*/*/*.md');
-foreach($postfiles as $postfile) {
-	if (substr(explode('/',$postfile)[7],0,1) != 'c') {
-		$filedates[] = substr(explode('/',$postfile)[7],0,10);
+foreach (glob(BASE_DIR . '/posts/*/*/*.md') as $file) {
+	$parts = explode('/', $file);
+	$index = count($parts) - 1;
+	$filename = $parts[$index];
+
+	if (substr($filename, 0, 1) != 'c') {
+		$filedates[] = substr($filename, 0, 10);
 	}
 }
 
@@ -49,7 +51,7 @@ foreach($filedates as $file) {
 	$fullcontent = '';
 	$year = date('Y', strtotime($file));
 	$month = date('m', strtotime($file));
-	$posts = file_get_contents($target_dir.'/posts/'.$year.'/'.$month.'/'.$file.'.md');
+	$posts = file_get_contents(BASE_DIR.'/posts/'.$year.'/'.$month.'/'.$file.'.md');
 	
 	$explode = array_filter(explode('@@', $posts),'strlen');
     //$explode = array_reverse($explode);

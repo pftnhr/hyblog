@@ -1,0 +1,75 @@
+<?xml version="1.0" standalone="yes" ?>
+<rss xmlns:source="http://source.scripting.com/"
+xmlns:now="https://nowns.work" version="2.0"
+>
+<channel>
+<title>hyde(v)blog</title>
+<description>Posts from hyde(v)blog</description>
+<link>https://dev.frittiert.es/hyblog/</link>
+<lastBuildDate>Thu, 07 Dec 2023 13:57:59 GMT</lastBuildDate>
+<cloud domain="rpc.rsscloud.io" port="5337" path="/pleaseNotify" registerProcedure="" protocol="http-post"/>
+<generator>hyblog</generator>
+<source:account service="hyblog">hyde(v)blog</source:account>
+<language>en</language>
+<item>
+<link>https://dev.frittiert.es/hyblog/?date=2023-12-07#p4</link>
+<guid isPermaLink="false">https://dev.frittiert.es/hyblog/?date=2023-12-07#p4</guid>
+<pubDate>Thu, 07 Dec 2023 13:57:59 GMT</pubDate>
+<description><![CDATA[<p>Pizza war lecker.</p>]]></description>
+</item>
+<item>
+<link>https://dev.frittiert.es/hyblog/?date=2023-12-07#p3</link>
+<guid isPermaLink="false">https://dev.frittiert.es/hyblog/?date=2023-12-07#p3</guid>
+<pubDate>Thu, 07 Dec 2023 12:38:18 GMT</pubDate>
+<description><![CDATA[<p>Dauert noch. Ich habe vergessen, den Ofen anzumachen...</p>]]></description>
+</item>
+<item>
+<link>https://dev.frittiert.es/hyblog/?date=2023-12-07#p2</link>
+<guid isPermaLink="false">https://dev.frittiert.es/hyblog/?date=2023-12-07#p2</guid>
+<pubDate>Thu, 07 Dec 2023 12:33:37 GMT</pubDate>
+<description><![CDATA[<p>Gleich gibt's Pizza!</p>]]></description>
+</item>
+<item>
+<link>https://dev.frittiert.es/hyblog/?date=2023-12-07#p1</link>
+<guid isPermaLink="false">https://dev.frittiert.es/hyblog/?date=2023-12-07#p1</guid>
+<pubDate>Thu, 07 Dec 2023 12:27:25 GMT</pubDate>
+<description><![CDATA[<p>Mahlzeit!</p>]]></description>
+</item>
+<item>
+<link>https://dev.frittiert.es/hyblog/?date=2023-12-05#p1</link>
+<guid isPermaLink="false">https://dev.frittiert.es/hyblog/?date=2023-12-05#p1</guid>
+<pubDate>Tue, 05 Dec 2023 05:59:20 GMT</pubDate>
+<description><![CDATA[<p>Hi there</p>]]></description>
+</item>
+<item>
+<link>https://dev.frittiert.es/hyblog/?date=2023-12-03#p2</link>
+<guid isPermaLink="false">https://dev.frittiert.es/hyblog/?date=2023-12-03#p2</guid>
+<pubDate>Sun, 03 Dec 2023 09:06:13 GMT</pubDate>
+<description><![CDATA[<p>Both the weather and the society are too cold to go outside these days.</p>]]></description>
+</item>
+<item>
+<link>https://dev.frittiert.es/hyblog/?date=2023-12-03#p1</link>
+<guid isPermaLink="false">https://dev.frittiert.es/hyblog/?date=2023-12-03#p1</guid>
+<pubDate>Sun, 03 Dec 2023 09:05:16 GMT</pubDate>
+<description><![CDATA[<p>Just a mind that wants to survive in an absurd reality.</p>]]></description>
+</item>
+<item>
+<link>https://dev.frittiert.es/hyblog/?date=2023-12-02#p1</link>
+<guid isPermaLink="false">https://dev.frittiert.es/hyblog/?date=2023-12-02#p1</guid>
+<pubDate>Sat, 02 Dec 2023 12:29:56 GMT</pubDate>
+<description><![CDATA[<p>Both the weather and the society are too cold to go outside these days.</p>]]></description>
+</item>
+<item>
+<link>https://dev.frittiert.es/hyblog/?date=2023-12-01#p3</link>
+<guid isPermaLink="false">https://dev.frittiert.es/hyblog/?date=2023-12-01#p3</guid>
+<pubDate>Fri, 01 Dec 2023 11:49:59 GMT</pubDate>
+<description><![CDATA[<p>Hallo hallo!</p>]]></description>
+</item>
+<item>
+<link>https://dev.frittiert.es/hyblog/?date=2023-12-01#p2</link>
+<guid isPermaLink="false">https://dev.frittiert.es/hyblog/?date=2023-12-01#p2</guid>
+<pubDate>Fri, 01 Dec 2023 19:12:06 GMT</pubDate>
+<description><![CDATA[<p>Mon dieux</p>]]></description>
+</item>
+</channel>
+</rss>

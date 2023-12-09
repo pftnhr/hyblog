@@ -7,15 +7,12 @@ define('APP_RAN', '');
 
 require_once('config.php');
 
-$target_dir = dirname(__FILE__).'/pages/';
-
-// Dynamisch den Titel aus dem Dateinamen ableiten
 $currentFileName = basename($_SERVER['SCRIPT_FILENAME'], '.php');
 $siteTitle = ucfirst($currentFileName);
 
 $pagenames = array();
 
-foreach(glob($target_dir.'*.md') as $i=>$file) {
+foreach(glob(BASE_DIR.'/pages/'.'*.md') as $i=>$file) {
 	$pagenames[$i] = pathinfo($file, PATHINFO_FILENAME);
 }
 

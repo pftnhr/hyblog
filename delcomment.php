@@ -5,8 +5,7 @@ session_start();
 
 require_once('Parsedown.php');
 
-$target_dir = dirname(__FILE__);
-$auth = file_get_contents($target_dir . '/session.php');
+$auth = file_get_contents(BASE_DIR . '/session.php');
 
 $comment = $_GET['c'];
 $date = $_GET['date'];
@@ -18,7 +17,7 @@ echo '<h3>Comments</h3>';
 echo '<div id="comment'.$post.'">';
 echo '<br>';
 
-$file = $target_dir.'/posts/'.$year.'/'.$month.'/'.'comments'.$post.'-'.$date.'.md';
+$file = BASE_DIR.'/posts/'.$year.'/'.$month.'/'.'comments'.$post.'-'.$date.'.md';
 
 if (isset($_SESSION['hauth']) && $_SESSION['hauth'] == $auth) {
 	$comments = file_get_contents($file);

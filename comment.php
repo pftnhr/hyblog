@@ -2,7 +2,7 @@
 
 require_once('Parsedown.php');
 
-$target_dir = dirname(__FILE__); //$_SERVER['DOCUMENT_ROOT'];
+BASE_DIR = dirname(__FILE__); //$_SERVER['DOCUMENT_ROOT'];
 
 if (isset($_POST['date']) && isset($_POST['post'])) {
 	$date = $_POST['date'];
@@ -16,7 +16,7 @@ if (isset($_POST['date']) && isset($_POST['post'])) {
 	}
 	$comment = strip_tags($_POST['comment'],'<a><p><br><li><b><i><strong><em>');
 	
-	$file = $target_dir.'/posts/'.$year.'/'.$month.'/comments'.$post.'-'.$date.'.md';
+	$file = BASE_DIR.'/posts/'.$year.'/'.$month.'/comments'.$post.'-'.$date.'.md';
 
 	if ( file_exists( $file ) ) {
 		$existing = file_get_contents($file);

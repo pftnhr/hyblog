@@ -7,15 +7,14 @@ define('APP_RAN', '');
 
 require_once('config.php');
 
-$root = dirname(__FILE__);
-$auth = file_get_contents($root . '/session.php');
+$auth = file_get_contents(BASE_DIR . '/session.php');
 
 if (!isset($_SESSION['hauth']) || $_SESSION['hauth'] != $auth) {
   header("location: " . BASE_URL );
   exit;
 }
 
-$target_dir = $root.'/pages/';
+$target_dir = BASE_DIR.'/pages/';
 
 // Dynamisch den Titel aus dem Dateinamen ableiten
 $currentFileName = basename($_SERVER['SCRIPT_FILENAME'], '.php');

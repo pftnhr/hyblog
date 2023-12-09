@@ -7,8 +7,7 @@ define('APP_RAN', '');
 
 require_once('config.php');
 
-$root = dirname(__FILE__);
-$auth = file_get_contents($root . '/session.php');
+$auth = file_get_contents(BASE_DIR . '/session.php');
 
 // Dynamisch den Titel aus dem Dateinamen ableiten
 $currentFileName = basename($_SERVER['SCRIPT_FILENAME'], '.php');
@@ -19,20 +18,18 @@ if (!isset($_SESSION['hauth']) || $_SESSION['hauth'] != $auth) {
   exit;
 }
 
-$target_dir = $root.'/pages/';
-
 $content = '';
 $dupe = false;
 
-//echo $target_dir;
+//echo BASE_DIR.'/pages/';
 
 if (isset($_POST['addpage']) && $_POST['addpage'] == 'add') {
 	$title = $_POST['title'];
 	$content = $_POST['content'];
 	$filename = strtolower(str_replace(' ', '_', $title));
 
-	if (!empty(glob($target_dir.'*.md'))) {
-		foreach(glob($target_dir.'*.md') as $file) {
+	if (!empty(glob(BASE_DIR.'/pages/'.'*.md'))) {
+		foreach(glob(BASE_DIR.'/pages/'.'*.md') as $file) {
 			$pagename = pathinfo($file, PATHINFO_FILENAME);
 			if ($pagename == $filename) {
 				echo '</br><h2>Page name already used.</h2>';
@@ -41,7 +38,7 @@ if (isset($_POST['addpage']) && $_POST['addpage'] == 'add') {
 		}
 	}
 	if($dupe === false) {
-		$page = $target_dir.$filename.'.md';
+		$page = BASE_DIR.'/pages/'.$filename.'.md';
 		file_put_contents($page, $content);
 		header("Location: managepages.php");
 		exit;

@@ -7,13 +7,12 @@ define('APP_RAN', '');
 
 require_once('config.php');
 
-$target_dir = dirname(__FILE__);
-$auth = file_get_contents($target_dir . '/session.php');
+$auth = file_get_contents(BASE_DIR . '/session.php');
 
 if (isset($_GET['p'])) {
 	$page = $_GET['p'];
 
-	$file = $target_dir.'/pages/'.$page.'.md';
+	$file = BASE_DIR.'/pages/'.$page.'.md';
 	$content = file_get_contents($file);
 	
 	if (isset($_POST['content']) && $_POST['content'] != '') {

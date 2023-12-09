@@ -8,8 +8,7 @@ define('APP_RAN', '');
 // Include config file
 require_once('../config.php');
 
-$target_dir = dirname(__DIR__);
-$file = $target_dir . '/session.php';
+$file = BASE_DIR . '/session.php';
 
 // Dynamisch den Titel aus dem Dateinamen ableiten
 $currentFileName = basename($_SERVER['SCRIPT_FILENAME'], '.php');
@@ -36,7 +35,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $hash = password_hash($password, PASSWORD_DEFAULT);
         $_SESSION['hauth'] = $hash;
         
-        $file = $target_dir . '/session.php';
+        $file = BASE_DIR . '/session.php';
 
 		if ( file_exists( $file ) ) {
 		  unlink( $file );

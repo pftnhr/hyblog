@@ -13,7 +13,6 @@ require_once('ping.php');
 require_once('Parsedown.php');
 require_once('ParsedownExtra.php');
 
-$target_dir = dirname(__FILE__);
 $rss = BASE_DIR.'/feed.xml';
 
 if ( file_exists( $rss ) ) {
@@ -38,7 +37,7 @@ fwrite($rssfile, '<language>en</language>'.PHP_EOL);
 
 if (NOWNS != '') {
 	$nownsname = NOWNS;
-	$nowns = $target_dir.'/pages/'.$nownsname.'.md';
+	$nowns = BASE_DIR.'/pages/'.$nownsname.'.md';
 	$title = ucfirst(str_replace('_', ' ', $nownsname));
 	$content = file_get_contents($nowns);
 	$Parsedown = new Parsedown();
@@ -51,7 +50,7 @@ if (NOWNS != '') {
 	fwrite($rssfile, '<now:timestamp>'.$time.'</now:timestamp>'.PHP_EOL);
 }
 
-foreach (glob($target_dir . '/posts/*/*/*.md') as $file) {
+foreach (glob(BASE_DIR . '/posts/*/*/*.md') as $file) {
 	$parts = explode('/', $file);
 	$index = count($parts) - 1;
 	$filename = $parts[$index];

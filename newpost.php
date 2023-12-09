@@ -7,8 +7,7 @@ define('APP_RAN', '');
 
 require_once('config.php');
 
-$target_dir = dirname(__FILE__);
-$auth = file_get_contents($target_dir . '/session.php');
+$auth = file_get_contents(BASE_DIR . '/session.php');
 $date = $_GET['date'];
 $year = date('Y', strtotime($date));
 $month = date('m', strtotime($date));
@@ -34,7 +33,7 @@ if (isset($_POST['content']) && isset($_POST['content']) != '') {
 	    	mkdir('posts/'.$year.'/'.$month);
 	    }
 		
-		$file = $target_dir.'/posts/'.$year.'/'.$month.'/'.$date.'.md';
+		$file = BASE_DIR.'/posts/'.$year.'/'.$month.'/'.$date.'.md';
 
 		if ( file_exists( $file ) ) {
 		  unlink( $file );
